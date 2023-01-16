@@ -186,4 +186,42 @@ public class State {
         }
     }
 
+
+
+    public String toString(){
+        StringBuilder str = new StringBuilder();
+        str.append("   |");
+        for (int j = 0; j < 7; j++) {
+            str.append(" "+j+" |");
+        }
+        str.append("\n");
+        for (int j = 0; j < 8; j++) {
+            str.append("----");
+        }
+        str.append("\n");
+        for (int i = 0; i < 6; i++) {
+            str.append(" "+i+" |");
+            for (int j = 0; j < 7; j++) {
+                if (this.plateau[i][j] == SYMBOLE[0]){
+                    str.append (" ");
+                    str.append(Constant.ANSI_GREEN + this.plateau[i][j]  + Constant.ANSI_RESET);
+                    str.append(" |");
+                }
+                else if (this.plateau[i][j] == SYMBOLE[1]){
+                    str.append(" ");
+                    str.append(Constant.ANSI_RED + this.plateau[i][j]  + Constant.ANSI_RESET);
+                    str.append (" |");
+                }else {
+                    str.append(" "+this.plateau[i][j] + " |");
+
+                }
+            }
+            str.append("\n");
+            for (int j = 0; j < 8; j++) {
+                str.append("----");
+            }
+            str.append("\n");
+        }
+        return str.toString();
+    }
 }
