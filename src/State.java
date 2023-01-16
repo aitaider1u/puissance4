@@ -38,18 +38,18 @@ public class State {
     }
 
     public boolean playAnAction(Action action){
-        if(action.getColumn() >=7 || action.getColumn()<0){
+        if(action.getColumn() >=7 || action.getColumn()<0)
             return false;
-        }
-        if (this.plateau[1][action.getColumn()] != ' '){
+        if (this.plateau[1][action.getColumn()] != ' ')
             return false;
-        }
 
         int index = 0;
         while( index < 6 && this.plateau[index][action.getColumn()] == ' ' ){
             index++;
         }
+
         this.plateau[index-1][action.getColumn()] = SYMBOLE[this.player];
+        this.otherPlayer();
         return true;
     }
 
@@ -97,7 +97,6 @@ public class State {
                 indexI = i - delta;
                 indexJ = j + delta;
 
-
                 while(k<4 && indexI >= i && indexI+4 <= 6 && indexJ >= j && indexJ-4 >=0){
                     k++;
                     if (  plateau[indexI][indexJ] != ' ' && plateau[indexI][indexJ] ==plateau[indexI+1][indexJ-1]  && plateau[indexI+1][indexJ-1] ==plateau[indexI+2][indexJ-2]&& plateau[indexI+2][indexJ-2] ==plateau[indexI+3][indexJ-3])
@@ -137,8 +136,8 @@ public class State {
         return FinalState.NON;
     }
 
-    public State clone(State state){
-        State clonedState  = new State(state.player);
+    public State cloneState(){
+        State clonedState  = new State(this.player);
         char[][] plateauClone = clonedState.getPlateau();
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
@@ -148,8 +147,8 @@ public class State {
         return clonedState;
     }
 
-    public int  otherPlayer(int index){
-        return  1-index;
+    public void   otherPlayer(){
+         this.player= 1 - this.player;
     }
 
     public void displayGame(){

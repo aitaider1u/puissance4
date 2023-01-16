@@ -22,7 +22,6 @@ public class Main {
                 int randChoice = random.nextInt(actions.size());
                 state.playAnAction(actions.get(randChoice));
             }
-            state.setPlayer(state.otherPlayer(state.getPlayer()));
             state.displayGame();
         }
 
