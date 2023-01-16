@@ -13,8 +13,6 @@ public class Node {
     private int nbSimulations;
 
 
-
-
     public Node(Node parent, Action action) {
 
         if(parent != null && action != null){
@@ -44,10 +42,6 @@ public class Node {
         return child;
     }
 
-
-
-
-
     public int getNbChildren(){
         return this.children.size();
     }
@@ -65,9 +59,9 @@ public class Node {
         str.append("lui     \n");
 
         str.append(getState());
-        for (Node node :this.children) {
+        for (Node node : this.children) {
             str.append(" child     \n");
-            str.append(node.getState());
+            str.append(node.toString());
         }
         return str.toString();
     }

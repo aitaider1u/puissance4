@@ -7,23 +7,9 @@ public class Main {
     public static void main(String[] args) {
         State state = new State(Constant.HUMAN_INDEX);
         state.initialState();
-        State clone = state.cloneState();
-        state.playAnAction(new Action(3));
 
-        Node node = Node.racineNode(state);
-        System.out.println(node);
+        //Node node = Node.racineNode(state);
 
-
-        for (Action action: node.getState().possibleAction()) {
-            System.out.println(action.getColumn());
-            Node child = node.addChild(action);
-            System.out.println(child);
-
-        }
-        //System.out.println("\n\n\n\n apres");
-        //System.out.println(node);
-
-        /*
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         Random random = new Random();
         while (state.isAFinalState() == State.FinalState.NON){
@@ -40,7 +26,7 @@ public class Main {
                 state.playAnAction(actions.get(randChoice));
             }
             state.displayGame();
-        }*/
+        }
 
     }
 }
