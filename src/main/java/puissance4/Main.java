@@ -1,3 +1,5 @@
+package puissance4;
+
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,7 +18,7 @@ public class Main {
             if(state.getPlayer() == Constant.HUMAN_INDEX){
                 System.out.println(state.isAFinalState());
                 System.out.println("l'humain joue ---> ");
-                System.out.print("Enter numero de la colonne : " );
+                System.out.print("Entrez le numero de la colonne : " );
                 int indexColum = myObj.nextInt();  // Read user input
                 state.playAnAction(new Action(indexColum));
             }else if (state.getPlayer() == Constant.MACHINE_INDEX){

@@ -1,3 +1,5 @@
+package puissance4;
+
 import java.util.Objects;
 
 public class Action {

@@ -1,3 +1,5 @@
+package puissance4;
+
 public class Constant {
     public static int HUMAN_INDEX = 0;
     public static int MACHINE_INDEX = 1;
