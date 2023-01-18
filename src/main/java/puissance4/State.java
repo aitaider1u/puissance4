@@ -1,6 +1,7 @@
 package puissance4;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class State {
 
@@ -53,6 +54,28 @@ public class State {
         this.plateau[index-1][action.getColumn()] = SYMBOLE[this.player];
         this.otherPlayer();
         return true;
+    }
+
+
+    public void playWithMCTS(int tempsMax){   // en millisecond
+        long tic = System.currentTimeMillis();
+        long time = 0L;
+
+        ArrayList<Action> actions;
+        Action bestAction = null;
+        Node  racine = Node.racineNode(this);
+        actions = racine.getState().possibleAction();
+        for (Action a : actions) {
+            racine.addChild(a);
+        }
+
+        while (time < tempsMax ) {
+
+
+            time = (new Date()).getTime() - tic;
+        }
+
+        this.playAnAction(bestAction);
     }
 
     public ArrayList<Action> possibleAction(){
@@ -137,6 +160,11 @@ public class State {
             return FinalState.DRAW_GAME;
         return FinalState.NON;
     }
+
+
+
+
+
 
     public State cloneState(){
         State clonedState  = new State(this.player);
