@@ -11,7 +11,7 @@ public class Node {
     private Node parent;
     private ArrayList<Node> children = new ArrayList<>();
 
-    private int nbVictories;
+    private double nbVictories;
     private int nbSimulations;
 
 
@@ -68,5 +68,19 @@ public class Node {
         return str.toString();
     }
 
+    public Node getParent() {
+        return parent;
+    }
 
+    public double getNbVictories() {
+        return nbVictories;
+    }
+
+    public int getNbSimulations() {
+        return nbSimulations;
+    }
+
+    public int getPlayer() {
+        return player;
+    }
 }

@@ -7,9 +7,24 @@ public class State {
 
     public enum FinalState {
         NON,
-        DRAW_GAME,
-        HUMAN_WIN,
-        MACHINE_WIN
+        DRAW_GAME(0.5),
+        HUMAN_WIN(1),
+        MACHINE_WIN(0);
+
+
+        private double value;
+
+
+        FinalState(double value) {
+            this.value = value;
+        }
+        FinalState() {}
+
+
+        public double getValue() {
+            return value;
+        }
+
     }
 
     private static char SYMBOLE[] = {'X','O'};    // X pour l'humain et O pour la machine
