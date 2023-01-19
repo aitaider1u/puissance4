@@ -25,7 +25,9 @@ public class MCTS {
         if (node.getNbSimulations() == 0 )
             return Double.MAX_VALUE;
 
-        double exploitation = node.getNbVictories()/node.getNbSimulations();
+        // -1 pour l'humain et 1 pour la machine
+
+        double exploitation = ((node.getPlayer()==Constant.HUMAN_INDEX)? -1 : 1) *node.getNbVictories()/node.getNbSimulations();
         double exploration  = C*Math.sqrt(parent.getNbSimulations()/node.getNbVictories());
         return exploitation+exploration;
     }

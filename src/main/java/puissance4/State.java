@@ -8,8 +8,8 @@ public class State {
     public enum FinalState {
         NON,
         DRAW_GAME(0.5),
-        HUMAN_WIN(1),
-        MACHINE_WIN(0);
+        HUMAN_WIN(0),
+        MACHINE_WIN(1);
 
 
         private double value;
