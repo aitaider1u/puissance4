@@ -1,7 +1,10 @@
 package puissance4;
 
+import org.checkerframework.checker.units.qual.A;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 public class State {
 
@@ -58,7 +61,7 @@ public class State {
     public boolean playAnAction(Action action){
         if(action.getColumn() >=7 || action.getColumn()<0)
             return false;
-        if (this.plateau[1][action.getColumn()] != ' ')
+        if (this.plateau[0][action.getColumn()] != ' ')
             return false;
 
         int index = 0;
@@ -83,20 +86,24 @@ public class State {
         for (Action a : actions) {
             racine.addChild(a);
         }
+        MCTS mcts = new MCTS(racine);
 
         while (time < tempsMax ) {
-
-
+            Node selected = mcts.selection();
+            Node nodeToSimulate = mcts.expansion(selected);
+            double value = mcts.simulation(nodeToSimulate);
+            mcts.rollout(nodeToSimulate,value);
             time = (new Date()).getTime() - tic;
         }
 
-        this.playAnAction(bestAction);
+        Action action = mcts.bestActionToPlay();
+        this.playAnAction(action);
     }
 
     public ArrayList<Action> possibleAction(){
         ArrayList<Action> actions = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
-            if(this.plateau[1][i] == ' ')
+            if(this.plateau[0][i] == ' ')
                 actions.add(new Action(i));
         }
         return actions;
@@ -168,7 +175,7 @@ public class State {
         // si match nul
         int cpt = 0;
         for (int l = 0; l < 7; l++) {
-            if (this.plateau[1][l] != ' ')
+            if (this.plateau[0][l] != ' ')
                 cpt++;
         }
         if (cpt == 7)

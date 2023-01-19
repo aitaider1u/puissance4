@@ -1,6 +1,7 @@
 package puissance4;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.SimpleTimeZone;
 
 public class Node {
@@ -82,5 +83,25 @@ public class Node {
 
     public int getPlayer() {
         return player;
+    }
+
+    public ArrayList<Node> getChildren() {
+        return children;
+    }
+
+    public void setChildren(ArrayList<Node> children) {
+        this.children = children;
+    }
+
+    public void updateNbSimulations(){
+        this.nbSimulations++;
+    }
+
+    public void updateNbVictories(double value){
+        this.nbVictories = this.nbVictories + value;
+    }
+
+    public Action getAction() {
+        return action;
     }
 }

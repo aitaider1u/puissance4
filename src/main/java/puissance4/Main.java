@@ -13,6 +13,8 @@ public class Main {
 
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         Random random = new Random();
+        System.out.println(state);
+
         while (state.isAFinalState() == State.FinalState.NON){
             if(state.getPlayer() == Constant.HUMAN_INDEX){
                 System.out.println(state.isAFinalState());
@@ -22,9 +24,7 @@ public class Main {
                 state.playAnAction(new Action(indexColum));
             }else if (state.getPlayer() == Constant.MACHINE_INDEX){
                 System.out.println("La Machine joue ---> ");
-                ArrayList<Action> actions = state.possibleAction();
-                int randChoice = random.nextInt(actions.size());
-                state.playAnAction(actions.get(randChoice));
+                state.playWithMCTS(100);
             }
             state.displayGame();
         }
