@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MCTS {
+
     private Node racineNode;
     private static final double C = Math.sqrt(2);
 
@@ -13,15 +14,11 @@ public class MCTS {
 
 
     public Node selection(){
+
         return selection_aux(this.racineNode);
     }
 
     private Node selection_aux (Node node){
-        if(node == null){
-            System.out.println("il est nul ");
-
-        }
-
         if (node.getState().isAFinalState() != State.FinalState.NON )
             return  node;
 
@@ -38,10 +35,14 @@ public class MCTS {
             }
         }
 
+        if(selectedNode == null)
+            return node;
+
         return this.selection_aux(selectedNode);
     }
 
     public Node expansion(Node node){
+        Random random = new Random();
         if (node.getState().isAFinalState() != State.FinalState.NON )
             return  node;
 
@@ -50,7 +51,7 @@ public class MCTS {
             node.addChild(a);
         }
 
-        return node.getChildren().get(0);   // qui sera similier
+        return node.getChildren().get(random.nextInt(node.getNbChildren()));   // qui sera similier
     }
 
     public double simulation(Node node){
@@ -67,7 +68,7 @@ public class MCTS {
     }
 
     public void rollout(Node node,double value){
-        while (node.getParent() != null){
+        while (node != null){
             node.updateNbSimulations();
             node.updateNbVictories(value);
             node = node.getParent();
@@ -78,9 +79,8 @@ public class MCTS {
         Node parent = node.getParent();
         if (node.getNbSimulations() == 0 )
             return Double.MAX_VALUE;
-
-        double exploitation = ((node.getPlayer()==Constant.HUMAN_INDEX)? -1 : 1) *node.getNbVictories()/node.getNbSimulations();
-        double exploration  = C*Math.sqrt(parent.getNbSimulations()/node.getNbVictories());
+        double exploitation = ((node.getPlayer()==Constant.HUMAN_INDEX)? -1 : 1) *(node.getNbVictories()/node.getNbSimulations());
+        double exploration  = C*Math.sqrt( Math.log(parent.getNbSimulations())/node.getNbSimulations());
         return exploitation+exploration;
     }
 

@@ -94,7 +94,7 @@ public class Node {
     }
 
     public void updateNbSimulations(){
-        this.nbSimulations++;
+        this.nbSimulations =  this.nbSimulations+1;
     }
 
     public void updateNbVictories(double value){

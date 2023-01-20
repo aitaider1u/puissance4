@@ -87,17 +87,6 @@ public class State {
             racine.addChild(a);
         }
 
-
-
-        if (racine == null ){
-            try {
-                throw new Exception("nulllellelelelelle");
-            } catch (Exception e) {
-                System.out.println( "nullelellelelelllelelelele ") ;
-            }
-        }
-
-
         MCTS mcts = new MCTS(racine);
         while (time < tempsMax ) {
             Node selected = mcts.selection();
