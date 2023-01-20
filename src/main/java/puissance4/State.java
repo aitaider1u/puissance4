@@ -86,8 +86,19 @@ public class State {
         for (Action a : actions) {
             racine.addChild(a);
         }
-        MCTS mcts = new MCTS(racine);
 
+
+
+        if (racine == null ){
+            try {
+                throw new Exception("nulllellelelelelle");
+            } catch (Exception e) {
+                System.out.println( "nullelellelelelllelelelele ") ;
+            }
+        }
+
+
+        MCTS mcts = new MCTS(racine);
         while (time < tempsMax ) {
             Node selected = mcts.selection();
             Node nodeToSimulate = mcts.expansion(selected);
@@ -95,9 +106,8 @@ public class State {
             mcts.rollout(nodeToSimulate,value);
             time = (new Date()).getTime() - tic;
         }
-
-        Action action = mcts.bestActionToPlay();
-        this.playAnAction(action);
+        bestAction = mcts.bestActionToPlay();
+        this.playAnAction(bestAction);
     }
 
     public ArrayList<Action> possibleAction(){
@@ -138,29 +148,35 @@ public class State {
                 }
                 //diagonales
                 //1
-                int delta_i = i - (((i-4+1)<=0) ? (i-4+1) : 0);
-                int delta_j = (((j+4-1)<=6) ? (j+4-1) : 6) - j;
+                int delta_i = i - (((i-3)>=0) ? (i-3) : 0);
+                int delta_j = (((j+3)<=6) ? (j+3) : 6) - j;
+
                 int delta = Math.min(delta_i,delta_j);
+
                 indexI = i - delta;
                 indexJ = j + delta;
-
-                while(k<4 && indexI >= i && indexI+4 <= 6 && indexJ >= j && indexJ-4 >=0){
+                k = 0;
+                while(k<4  && indexI+3 <= 5 && indexJ-3 >=0){
                     k++;
-                    if (  plateau[indexI][indexJ] != ' ' && plateau[indexI][indexJ] ==plateau[indexI+1][indexJ-1]  && plateau[indexI+1][indexJ-1] ==plateau[indexI+2][indexJ-2]&& plateau[indexI+2][indexJ-2] ==plateau[indexI+3][indexJ-3])
+                    if (  plateau[i][j] != ' ' && plateau[indexI][indexJ] ==plateau[indexI+1][indexJ-1]  && plateau[indexI+1][indexJ-1] ==plateau[indexI+2][indexJ-2]&& plateau[indexI+2][indexJ-2] ==plateau[indexI+3][indexJ-3]){
+
                         if (plateau[i][j] == SYMBOLE[Constant.HUMAN_INDEX])
                             return FinalState.HUMAN_WIN;
                         else
                             return FinalState.MACHINE_WIN;
+                    }
                     indexI++;
                     indexJ--;
                 }
                 //2
-                delta_i = i - (((i-4+1)<=0) ? (i-4+1) : 0);
-                delta_j = j - (((j-4+1)>=0) ? (j-4+1) : 0);
+                k = 0;
+                delta_i = i - (((i-3)>=0) ? (i-3) : 0);
+                delta_j = j - (((j-3)>=0) ? (j-3) : 0);
                 delta = Math.min(delta_i,delta_j);
                 indexI = i - delta;
                 indexJ = j - delta;
-                while(k<4 && indexI <= i  && indexI+4 <= 6   && indexJ >= j  && indexJ+4 <= 7){
+
+                while(k<4 && indexI+3 <= 5  && indexJ+3 <= 6){
                     k++;
                     if (  plateau[indexI][indexJ] != ' ' && plateau[indexI][indexJ] ==plateau[indexI+1][indexJ+1]  && plateau[indexI+1][indexJ+1] ==plateau[indexI+2][indexJ+2]&& plateau[indexI+2][indexJ+2] ==plateau[indexI+3][indexJ+3])
                         if (plateau[i][j] == SYMBOLE[Constant.HUMAN_INDEX])

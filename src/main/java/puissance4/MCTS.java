@@ -17,10 +17,17 @@ public class MCTS {
     }
 
     private Node selection_aux (Node node){
-        if (node.getNbChildren() == 0 )
-            return  node;
+        if(node == null){
+            System.out.println("il est nul ");
+
+        }
+
         if (node.getState().isAFinalState() != State.FinalState.NON )
             return  node;
+
+        if (node.getNbChildren() == 0 )
+            return  node;
+
         Node selectedNode = null;
         double maxUCBValue = -Double.MIN_VALUE;
         for (Node n : node.getChildren()){
@@ -43,7 +50,7 @@ public class MCTS {
             node.addChild(a);
         }
 
-        return node.getChildren().get(0);   // qui sera similu
+        return node.getChildren().get(0);   // qui sera similier
     }
 
     public double simulation(Node node){

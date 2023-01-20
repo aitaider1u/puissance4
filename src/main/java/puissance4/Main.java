@@ -1,5 +1,7 @@
 package puissance4;
 
+import org.checkerframework.checker.units.qual.A;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -24,7 +26,7 @@ public class Main {
                 state.playAnAction(new Action(indexColum));
             }else if (state.getPlayer() == Constant.MACHINE_INDEX){
                 System.out.println("La Machine joue ---> ");
-                state.playWithMCTS(100);
+                state.playWithMCTS(500);
             }
             state.displayGame();
         }
