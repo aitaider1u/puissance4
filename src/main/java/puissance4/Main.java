@@ -26,7 +26,7 @@ public class Main {
                 state.playAnAction(new Action(indexColum));
             }else if (state.getPlayer() == Constant.MACHINE_INDEX){
                 System.out.println("La Machine joue ---> ");
-                state.playWithMCTS(100);
+                state.playWithMCTS(150);
             }
             state.displayGame();
         }
