@@ -20,16 +20,17 @@ public class Main {
         while (state.isAFinalState() == State.FinalState.NON){
             if(state.getPlayer() == Constant.HUMAN_INDEX){
                 System.out.println(state.isAFinalState());
-                System.out.println("l'humain joue ---> ");
+                System.out.println("l'humain joue --->  "+ state.isAFinalState());
                 System.out.print("Entrez le numero de la colonne : " );
                 int indexColum = myObj.nextInt();  // Read user input
                 state.playAnAction(new Action(indexColum));
             }else if (state.getPlayer() == Constant.MACHINE_INDEX){
-                System.out.println("La Machine joue ---> ");
+                System.out.println("La Machine joue ---> "+ state.isAFinalState());
                 state.playWithMCTS(150);
-            }
+                }
             state.displayGame();
         }
+        System.out.println("final "+ state.isAFinalState()+ "   :    "+ state.isAFinalState().getValue());
 
     }
 }
