@@ -113,14 +113,12 @@ public class MCTS {
         if(State.SelectionStrategy.ROBUSTE == strategy){
             double nbrMaxSimulation = -Double.MIN_VALUE;
             for (Node n : racineNode.getChildren()){
-                if (nbrMaxSimulation <   n.getNbVictories()/n.getNbSimulations()){
-                    nbrMaxSimulation = n.getNbVictories()/n.getNbSimulations();
+                if (nbrMaxSimulation <   n.getNbSimulations()){
+                    nbrMaxSimulation =  n.getNbSimulations();
                     selectedNode = n;
                 }
             }
         }
-
         return selectedNode.getAction();
-
     }
 }
