@@ -124,7 +124,7 @@ public class State {
                     if ( plateau[indexI][j] != ' ' && plateau[indexI][j] ==plateau[indexI+1][j]  && plateau[indexI+1][j] == plateau[indexI+2][j]&& plateau[indexI+2][j] == plateau[indexI+3][j])
                         if (plateau[i][j] == SYMBOLE[Constant.HUMAN_INDEX])
                             return FinalState.HUMAN_WIN;
-                        else
+                        else if  (plateau[i][j] == SYMBOLE[Constant.MACHINE_INDEX])
                             return FinalState.MACHINE_WIN;
                     indexI++;
                 }
@@ -136,7 +136,7 @@ public class State {
                     if (  plateau[i][indexJ] != ' ' && plateau[i][indexJ] ==plateau[i][indexJ+1]  && plateau[i][indexJ+1] ==plateau[i][indexJ+2]&& plateau[i][indexJ+2] ==plateau[i][indexJ+3])
                         if (plateau[i][j] == SYMBOLE[Constant.HUMAN_INDEX])
                             return FinalState.HUMAN_WIN;
-                        else
+                        else if  (plateau[i][j] == SYMBOLE[Constant.MACHINE_INDEX])
                             return FinalState.MACHINE_WIN;
                     indexJ++;
                 }

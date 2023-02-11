@@ -30,7 +30,7 @@ public class Main {
                 state.playAnAction(new Action(indexColum));
             }else if (state.getPlayer() == Constant.MACHINE_INDEX){
                 System.out.println("\n/*----------------MACHINE----------------*/ \n" );
-                state.playWithMCTS(150);
+                state.playWithMCTS(150); //
             }
             state.displayGame();
         }

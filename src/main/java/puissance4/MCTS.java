@@ -60,8 +60,19 @@ public class MCTS {
         Random random = new Random();
         while (currentState.isAFinalState() == State.FinalState.NON){
             ArrayList<Action> actions = currentState.possibleAction();
+
+            // modification question 3
+            for (Action a: actions) {
+                State clone =  currentState.cloneState();
+                clone.playAnAction(a);
+                if (clone.isAFinalState() != State.FinalState.NON){
+                    return clone.isAFinalState().getValue();
+                }
+            }
+            //sinon on selectionne aléatoirement
             int index = random.nextInt(actions.size());
             currentState.playAnAction(actions.get(index));
+
         }
 
         return currentState.isAFinalState().getValue();
