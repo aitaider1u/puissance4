@@ -97,6 +97,11 @@ public class State {
         }
         bestAction = mcts.bestActionToPlay();
         this.playAnAction(bestAction);
+
+        System.out.println("Statestique du coup actuel ");
+        System.out.println("Nombre de simulation realisés : "+ racine.getNbSimulations());
+        System.out.println("Probabilité de victoire pour de la Machine : "+ racine.getNbVictories()/racine.getNbSimulations());
+        System.out.println();
     }
 
     public ArrayList<Action> possibleAction(){
