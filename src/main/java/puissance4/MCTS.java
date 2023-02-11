@@ -69,6 +69,7 @@ public class MCTS {
                     return clone.isAFinalState().getValue();
                 }
             }
+
             //sinon on selectionne aléatoirement
             int index = random.nextInt(actions.size());
             currentState.playAnAction(actions.get(index));
@@ -96,15 +97,30 @@ public class MCTS {
     }
 
 
-    public Action bestActionToPlay(){
+    public Action bestActionToPlay(State.SelectionStrategy strategy){
         Node selectedNode = null;
-        double valueMax = -Double.MIN_VALUE;
-        for (Node n : racineNode.getChildren()){
-            if (valueMax <   n.getNbVictories()/n.getNbSimulations()){
-                valueMax = n.getNbVictories()/n.getNbSimulations();
-                selectedNode = n;
+
+        if(State.SelectionStrategy.MAX == strategy){
+            double valueMax = -Double.MIN_VALUE;
+            for (Node n : racineNode.getChildren()){
+                if (valueMax <   n.getNbVictories()/n.getNbSimulations()){
+                    valueMax = n.getNbVictories()/n.getNbSimulations();
+                    selectedNode = n;
+                }
             }
         }
+
+        if(State.SelectionStrategy.ROBUSTE == strategy){
+            double nbrMaxSimulation = -Double.MIN_VALUE;
+            for (Node n : racineNode.getChildren()){
+                if (nbrMaxSimulation <   n.getNbVictories()/n.getNbSimulations()){
+                    nbrMaxSimulation = n.getNbVictories()/n.getNbSimulations();
+                    selectedNode = n;
+                }
+            }
+        }
+
         return selectedNode.getAction();
+
     }
 }

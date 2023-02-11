@@ -30,13 +30,22 @@ public class State {
 
     }
 
+    public enum SelectionStrategy{
+        MAX,
+        ROBUSTE;
+    }
+
     private static char SYMBOLE[] = {'X','O'};    // X pour l'humain et O pour la machine
     private int player;
     private char[][] plateau = new char[6][7];
 
-    public State(int player) {
+    private SelectionStrategy strategy = SelectionStrategy.MAX;
+
+    public State(int player,SelectionStrategy selectionStrategy) {
         this.player = player;
+        this.strategy = selectionStrategy;
     }
+
 
     public char[][] getPlateau() {
         return plateau;
@@ -95,7 +104,7 @@ public class State {
             mcts.rollout(nodeToSimulate,value);
             time = (new Date()).getTime() - tic;
         }
-        bestAction = mcts.bestActionToPlay();
+        bestAction = mcts.bestActionToPlay(this.strategy);
         this.playAnAction(bestAction);
 
         System.out.println("Statestique du coup actuel ");
@@ -198,7 +207,7 @@ public class State {
 
 
     public State cloneState(){
-        State clonedState  = new State(this.player);
+        State clonedState  = new State(this.player,this.strategy);
         char[][] plateauClone = clonedState.getPlateau();
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
