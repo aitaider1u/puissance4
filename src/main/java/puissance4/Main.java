@@ -11,10 +11,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);  // Create a Scanner object
         State.SelectionStrategy strategy = null;
         while (strategy == null){
-            System.out.println("Choix du critère de selection : ");
-            System.out.println("Max : 0 ");
-            System.out.println("robuste : 1 ");
-            System.out.print("saisir votre choix :  ");
+            System.out.print("Choix du critère de selection (Max : 0, Robuste : 1) ?");
             int choice =  scanner.nextInt();
             if ( choice == 0 )
                 strategy = State.SelectionStrategy.MAX;
@@ -48,7 +45,23 @@ public class Main {
             }
             state.displayGame();
         }
-        System.out.println("final "+ state.isAFinalState()+ "   :    "+ state.isAFinalState().getValue());
+
+        System.out.println("\n\n*                                  *");
+        System.out.println("*        Fin de partie             *");
+        System.out.println("*                                  *");
+        System.out.println();
+
+        if(state.isAFinalState() == State.FinalState.HUMAN_WIN){
+            System.out.println("   Bravo ! vous avez gagné...   ");
+        }
+
+        if(state.isAFinalState() == State.FinalState.MACHINE_WIN){
+            System.out.println("   Perdu ! La machine a gagné...   ");
+        }
+        if(state.isAFinalState() == State.FinalState.DRAW_GAME){
+            System.out.println("   Match nul   ");
+        }
+        System.out.println("*----------------------------------*");
 
     }
 }

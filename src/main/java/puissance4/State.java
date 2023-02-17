@@ -131,9 +131,9 @@ public class State {
                 while(k<4 && indexI <= i && indexI+4 <= 6){
                     k++;
                     if ( plateau[indexI][j] != ' ' && plateau[indexI][j] ==plateau[indexI+1][j]  && plateau[indexI+1][j] == plateau[indexI+2][j]&& plateau[indexI+2][j] == plateau[indexI+3][j])
-                        if (plateau[i][j] == SYMBOLE[Constant.HUMAN_INDEX])
+                        if (plateau[indexI][j] == SYMBOLE[Constant.HUMAN_INDEX])
                             return FinalState.HUMAN_WIN;
-                        else if  (plateau[i][j] == SYMBOLE[Constant.MACHINE_INDEX])
+                        else if  (plateau[indexI][j] == SYMBOLE[Constant.MACHINE_INDEX])
                             return FinalState.MACHINE_WIN;
                     indexI++;
                 }
@@ -143,9 +143,9 @@ public class State {
                 while(k<4 && indexJ <= j  && indexJ+4 <= 7 ){
                     k++;
                     if (  plateau[i][indexJ] != ' ' && plateau[i][indexJ] ==plateau[i][indexJ+1]  && plateau[i][indexJ+1] ==plateau[i][indexJ+2]&& plateau[i][indexJ+2] ==plateau[i][indexJ+3])
-                        if (plateau[i][j] == SYMBOLE[Constant.HUMAN_INDEX])
+                        if (plateau[i][indexJ] == SYMBOLE[Constant.HUMAN_INDEX])
                             return FinalState.HUMAN_WIN;
-                        else if  (plateau[i][j] == SYMBOLE[Constant.MACHINE_INDEX])
+                        else if  (plateau[i][indexJ] == SYMBOLE[Constant.MACHINE_INDEX])
                             return FinalState.MACHINE_WIN;
                     indexJ++;
                 }
@@ -162,10 +162,11 @@ public class State {
                 while(k<4  && indexI+3 <= 5 && indexJ-3 >=0){
                     k++;
                     if (  plateau[indexI][indexJ] != ' ' && plateau[indexI][indexJ] ==plateau[indexI+1][indexJ-1]  && plateau[indexI+1][indexJ-1] ==plateau[indexI+2][indexJ-2]&& plateau[indexI+2][indexJ-2] ==plateau[indexI+3][indexJ-3]){
-                        if (plateau[i][j] == SYMBOLE[Constant.HUMAN_INDEX])
+                        if (plateau[indexI][indexJ] == SYMBOLE[Constant.HUMAN_INDEX])
                             return FinalState.HUMAN_WIN;
-                        else if  (plateau[i][j] == SYMBOLE[Constant.MACHINE_INDEX])
+                        else if  (plateau[indexI][indexJ] == SYMBOLE[Constant.MACHINE_INDEX])
                             return FinalState.MACHINE_WIN;
+
                     }
                     indexI++;
                     indexJ--;
@@ -180,11 +181,12 @@ public class State {
 
                 while(k<4 && indexI+3 <= 5  && indexJ+3 <= 6){
                     k++;
-                    if (  plateau[indexI][indexJ] != ' ' && plateau[indexI][indexJ] ==plateau[indexI+1][indexJ+1]  && plateau[indexI+1][indexJ+1] ==plateau[indexI+2][indexJ+2]&& plateau[indexI+2][indexJ+2] ==plateau[indexI+3][indexJ+3])
-                        if (plateau[i][j] == SYMBOLE[Constant.HUMAN_INDEX])
+                    if (  plateau[indexI][indexJ] != ' ' && plateau[indexI][indexJ] ==plateau[indexI+1][indexJ+1]  && plateau[indexI+1][indexJ+1] ==plateau[indexI+2][indexJ+2]&& plateau[indexI+2][indexJ+2] ==plateau[indexI+3][indexJ+3]){
+                        if (plateau[indexI][indexJ] == SYMBOLE[Constant.HUMAN_INDEX])
                             return FinalState.HUMAN_WIN;
-                        else if  (plateau[i][j] == SYMBOLE[Constant.MACHINE_INDEX])
+                        else if  (plateau[indexI][indexJ] == SYMBOLE[Constant.MACHINE_INDEX])
                             return FinalState.MACHINE_WIN;
+                    }
                     indexI++;
                     indexJ++;
                 }
