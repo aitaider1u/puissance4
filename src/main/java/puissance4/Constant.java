@@ -4,6 +4,8 @@ public class Constant {
     public static int HUMAN_INDEX = 0;
     public static int MACHINE_INDEX = 1;
 
+    public static int MCTS_TIME = 150;
+
     // pour affichage en couleur sur terminal
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";

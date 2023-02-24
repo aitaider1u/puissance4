@@ -107,10 +107,9 @@ public class State {
         bestAction = mcts.bestActionToPlay(this.strategy);
         this.playAnAction(bestAction);
 
-        System.out.println("Statestique du coup actuel ");
-        System.out.println("Nombre de simulation realisés : "+ racine.getNbSimulations());
-        System.out.println("Probabilité de victoire pour de la Machine : "+ racine.getNbVictories()/racine.getNbSimulations());
-        System.out.println();
+        System.out.println("*  Statestique du coup actuel   * ");
+        System.out.println("*  Nombre de simulation realisés : "+ racine.getNbSimulations());
+        System.out.println("*  Probabilité de victoire pour de la Machine : "+ String.format("%.4f", racine.getNbVictories()/racine.getNbSimulations()) +"\n");
     }
 
     public ArrayList<Action> possibleAction(){
@@ -202,11 +201,6 @@ public class State {
             return FinalState.DRAW_GAME;
         return FinalState.NON;
     }
-
-
-
-
-
 
     public State cloneState(){
         State clonedState  = new State(this.player,this.strategy);

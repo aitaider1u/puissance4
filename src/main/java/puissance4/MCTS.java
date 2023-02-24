@@ -50,25 +50,24 @@ public class MCTS {
         for (Action a:actions) {
             node.addChild(a);
         }
-
         return node.getChildren().get(random.nextInt(node.getNbChildren()));   // qui sera similier
     }
 
     public double simulation(Node node){
         State currentState = node.getState().cloneState();
-
         Random random = new Random();
         while (currentState.isAFinalState() == State.FinalState.NON){
             ArrayList<Action> actions = currentState.possibleAction();
 
-            // modification question 3
-            /*for (Action a: actions) {
+            //Question 3
+            //choisir un coup gagnant en faveur de la Machine
+            for (Action a: actions) {
                 State clone =  currentState.cloneState();
                 clone.playAnAction(a);
-                if (clone.isAFinalState() != State.FinalState.NON){
+                if (clone.isAFinalState() == State.FinalState.MACHINE_WIN){
                     return clone.isAFinalState().getValue();
                 }
-            }*/
+            }
 
             //sinon on selectionne aléatoirement
             int index = random.nextInt(actions.size());
